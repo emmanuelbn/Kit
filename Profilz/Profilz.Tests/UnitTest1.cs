@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Profilz.Models;
+using System.Data.Entity;
+using System.Linq;
 
 namespace Profilz.Tests
 {
@@ -26,6 +28,15 @@ namespace Profilz.Tests
            Assert.IsNotNull(user);
           Assert.AreEqual(user.Username, "micke");
         }
+        [TestMethod]
+        public void test_update()
+        {
+            Test_Create_Perso();
+            DbSet<User> users = Dal.Context.users;
+            User u = Dal.Context.users.FirstOrDefault(x => x.Id == 1);
+           // dal.users.Find(.Local. Dal.Context.users.Find();
 
+            Dal.Context.SaveChanges();
+        }
     }
 }

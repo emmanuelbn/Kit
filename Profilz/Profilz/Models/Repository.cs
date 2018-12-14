@@ -62,7 +62,7 @@ namespace Profilz.Models
             if (id.HasValue)
             {
                 T dbItem = Find(id);
-                if (dbItem!=null)
+                if (dbItem != null)
                 {
                     Remove(dbItem);
                     return true;
@@ -82,9 +82,9 @@ namespace Profilz.Models
             }
             catch
             {
-return false;
+                return false;
             }
-            
+
         }
     }
 }

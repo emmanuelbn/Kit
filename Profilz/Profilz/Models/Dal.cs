@@ -11,6 +11,8 @@ namespace Profilz.Models
         #region Tables
         public DbSet<User> users { get; protected set; }
 
+        public Repository<User> monDepot;
+
         #endregion
         private static Dal _context;
 
@@ -37,14 +39,8 @@ namespace Profilz.Models
         {
 
         }
-        public void ajouter(User user)
-        {
-            users.Add(user);
-        }
-        public void retirer(User user)
-        {
-            
-        }
+    
+     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -56,6 +52,7 @@ namespace Profilz.Models
         {
             if (id.HasValue)
             {
+               // return monDepot.FirstOrDefault(item => item.Id==id);
                 return users.FirstOrDefault(item => item.Id == id);
             }
             return null;
@@ -64,17 +61,29 @@ namespace Profilz.Models
         {
             return users.ToList();
         }
-        public override T Add(T source)
-        {
+        public  User Ajouter(User source)
+        {                    
             try
             {
-                return base.Add(source);
+                return users.Add(source);
             }
             catch
             {
                 return null;
             }
+            {
 
         }
+        public bool Update(Model source)
+        {
+            Model dbItem = Find(source.Id);
+            if (dbItem != null)
+            {
+                dbItem.UpdateFrom(source);
+                return true;
+            }
+            return false;
+        }
+
     }
 }
