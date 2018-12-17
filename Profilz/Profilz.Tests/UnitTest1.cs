@@ -13,7 +13,7 @@ namespace Profilz.Tests
         [TestMethod]
         public void Test_Create_Perso()
         {
-            Dal dal = Dal.Context;
+            ;
             User user = new User()
             {
                 Username ="micke",
@@ -37,6 +37,24 @@ namespace Profilz.Tests
            // dal.users.Find(.Local. Dal.Context.users.Find();
 
             Dal.Context.SaveChanges();
+        }
+        [TestMethod]
+        public void Test_retirer()
+        {
+            Test_Create_Perso();
+            User user = new User() {
+                
+                Username ="jojo",
+                Email = "a@a",
+                Password = "12345678"
+            };
+            users.Add(user);
+            Dal.Context.SaveChanges();
+            Assert.IsNotNull( users.Add(user));
+            
+            Assert.IsFalse( Dal.Context.Retirer(user));
+            Assert.IsNull(Dal.Context.users.FirstOrDefault( item => item.Id==1));
+
         }
     }
 }

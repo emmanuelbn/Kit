@@ -26,10 +26,6 @@ namespace Profilz.Models
                 }
                 return _context;
             }
-
-
-
-
         }
         public Dal() : base("mainContext")
         {
@@ -39,8 +35,8 @@ namespace Profilz.Models
         {
 
         }
-    
-     
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -52,7 +48,7 @@ namespace Profilz.Models
         {
             if (id.HasValue)
             {
-               // return monDepot.FirstOrDefault(item => item.Id==id);
+                // return monDepot.FirstOrDefault(item => item.Id==id);
                 return users.FirstOrDefault(item => item.Id == id);
             }
             return null;
@@ -61,8 +57,8 @@ namespace Profilz.Models
         {
             return users.ToList();
         }
-        public  User Ajouter(User source)
-        {                    
+        public User Ajouter(User source)
+        {
             try
             {
                 return users.Add(source);
@@ -71,7 +67,32 @@ namespace Profilz.Models
             {
                 return null;
             }
+        }
+        public bool Retirer(User user)
+        {
+            try
             {
+                users.Remove(user);
+            }
+            catch (Exception exc)
+            {
+
+                return false;
+            }
+            return true;
+        }
+        public bool Update<T>(Model source) where T : Model
+        {
+            try
+            {
+                DbSet<T> table = this.Set<T>();
+                Model dbItem = source;
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
 
         }
         public bool Update(Model source)

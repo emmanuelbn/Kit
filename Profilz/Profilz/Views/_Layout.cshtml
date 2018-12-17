@@ -1,0 +1,54 @@
+﻿@{
+    if (ViewBag.Title == null)
+    {
+        ViewBag.Title = "Mon CV";
+    }
+
+    if (ViewBag.PageTitle == null)
+    {
+        ViewBag.PageTitle = "Bienvenue";
+    }
+
+    Dictionary<string, string> myMenu = new Dictionary<string, string>();
+
+    myMenu.Add("Accueil", "/home/index");
+    myMenu.Add("Test", "/home/test");
+}
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+                <title>@ViewBag.Title - @ViewBag.PageTitle</title>
+
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <link rel="stylesheet" href="~/Content/css/style.css" />
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+            </head>
+
+            <body>
+                <header id="header">
+                    @MesHelper.TopBar("Titre menu", myMenu);
+                </header>
+
+                <main id="main" class="container">
+
+                    <h1>@ViewBag.Title</h1>
+
+                    @RenderBody()
+
+                </main>
+
+                <footer id="footer">
+                    <div class="row">
+                        <div class="col text-center">
+                            Copyright &copy; @DateTime.Now.Year.ToString()
+                        </div>
+                    </div>
+                </footer>
+            </body>
+        </html>
